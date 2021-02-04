@@ -12,19 +12,19 @@ html,body {
   height: 100%;
 }
 
-.producto-listado {
+.product-listed {
     background-color: #c77b16;
 }
 
-.producto-listado img {
+.product-listed img {
     height: 200px;
     width: 150px;
 }
 
-.producto-listado .card-text {
+.product-listed .card-text {
     font-size: 1.2rem;
 }
 
-.producto-listado .puntuacion {
+.product-listed .score {
     font-size: 2rem;
 }

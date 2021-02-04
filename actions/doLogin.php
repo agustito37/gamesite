@@ -6,16 +6,16 @@
  * and open the template in the editor.
  */
 
-require_once('datos.php');
+require_once('utils.php');
 
-$usuario = $_POST['usuario'];
+$user = $_POST['user'];
 $password = $_POST['password'];
 
-$logueado = login($usuario, $password);
+$loggedUser = login($user, $password);
 
-if ($logueado) {
+if ($loggedUser) {
     session_start();
-    $_SESSION['logueado'] = $logueado;
+    $_SESSION['user'] = $loggedUser;
     header('location:index.php');
 } else {
     header('location:login.php?err=1');
