@@ -6,6 +6,8 @@ and open the template in the editor.
 -->
 <?php
     require_once './logica/utils.php';
+    error_reporting(E_ERROR);
+    ini_set('display_errors', 1);
 ?>
 <html>
     <head>
@@ -16,7 +18,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body class="bg-dark">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <a class="navbar-brand" href="index.php">
                 <img src="public/imgs/logo.png">
@@ -42,7 +44,7 @@ and open the template in the editor.
               </ul>
             </div>
         </nav>
-        <main class="container-fluid h-100">
+        <main class="container-fluid">
             <div class="row  h-100">
                 <aside class="col bg-primary hidden-md-down p-4 h-100">
                     <h2 class="text-light">
@@ -54,6 +56,26 @@ and open the template in the editor.
                                 echo 'Juegos';
                             }
                         ?>
+                        
+                        <?php foreach (getProductos() as $prod): ?>
+                            <div class="producto-listado card flex-row flex-wrap mt-3">
+                                <div class="card-header border-0">
+                                    <img src="<?php echo $prod['img'] ?>" alt="">
+                                </div>
+                                <div class="card-block p-2 d-flex flex-row flex-grow-1">
+                                    <div class="d-flex flex-column h-100 w-100">
+                                        <h4 class="card-title"><?php echo $prod['nombre'] ?></h4>
+                                        <p class="card-text">Fecha: <?php echo $prod['fecha'] ?></p>
+                                        <?php if(!isset($categoria)) : ?>
+                                            <p class="card-text mt-auto">Categoría: <?php echo getCategoria($prod['categoria'])['nombre'] ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <p class="ml-auto h-100">
+                                        <span class="puntuacion badge badge-<?php echo getColorPuntaje($prod['puntaje']) ?>"><?php echo $prod['puntaje'] ?></span>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </h2>
                 </aside>
                 <section class="col-2 px-1 bg-dark text-center p-5">
@@ -65,6 +87,8 @@ and open the template in the editor.
                             </a>
                         </div>
                     <?php endforeach; ?>
+                    
+                    <h5 class="text-light mt-5">Top Game</h5>
                 </section>
             </div>
         </main>

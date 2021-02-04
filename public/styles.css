@@ -11,3 +11,20 @@ and open the template in the editor.
 html,body {
   height: 100%;
 }
+
+.producto-listado {
+    background-color: #c77b16;
+}
+
+.producto-listado img {
+    height: 200px;
+    width: 150px;
+}
+
+.producto-listado .card-text {
+    font-size: 1.2rem;
+}
+
+.producto-listado .puntuacion {
+    font-size: 2rem;
+}
