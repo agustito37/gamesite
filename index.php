@@ -15,7 +15,6 @@ and open the template in the editor.
     if (isset($_GET['catId'])) {
         $category = getCategory($_GET['catId']);
     }
-    
     $categories = getCategories();
     $games = getGames();
                         
@@ -30,5 +29,6 @@ and open the template in the editor.
     $smarty->assign('categories', $categories);
     $smarty->assign('games', $games);
     
-    
-    $smarty->display('index.tpl');
+    $smarty->assign('title', 'Home');
+    $smarty->assign('body', 'home.tpl');
+    $smarty->display('structure/application.tpl');
