@@ -11,12 +11,11 @@ require_once('utils.php');
 $user = $_POST['user'];
 $password = $_POST['password'];
 
-$loggedUser = login($user, $password);
-
-if ($loggedUser) {
+$userData = login($user, $password);
+if ($userData) {
     session_start();
-    $_SESSION['user'] = $loggedUser;
-    header('location:index.php');
+    $_SESSION['user'] = $userData;
+    header('location:../index.php');
 } else {
-    header('location:login.php?err=1');
+    header('location:../ingresar.php?error=1');
 }
