@@ -1,10 +1,7 @@
 <?php
-    require_once './data/games.php';
-    require_once './data/categories.php';
+    require_once './utils/games.php';
+    require_once './utils/categories.php';
     require_once './config/smarty.php';
-    
-    error_reporting(E_ERROR);
-    ini_set('display_errors', 1);
     
     if ($_GET['catId']) {
         $category = getCategory($_GET['catId']);
