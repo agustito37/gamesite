@@ -3,7 +3,7 @@
     {foreach from=$categories item=cat}
         <div class="mb-2">
             <a href="{getCategoryParam category=$cat.id}" class="d-inline-block badge badge-secondary">
-                {$cat.name}
+                {$cat.nombre}
             </a>
         </div>
     {/foreach}

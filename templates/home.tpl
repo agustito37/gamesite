@@ -1,6 +1,6 @@
 <h2 class="text-light">
     {if $category}
-        {$category.name}
+        {$category.nombre}
     {else}
         Juegos
     {/if}

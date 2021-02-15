@@ -2,7 +2,7 @@
 
 <form class="form-signin" action="actions/doLogin.php" method="post">
   <div class="form-label-group mb-3">
-    <input type="text" name="user" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+    <input type="text" name="email" id="inputUser" class="form-control" placeholder="Email" required autofocus>
   </div>
 
   <div class="form-label-group mb-3">

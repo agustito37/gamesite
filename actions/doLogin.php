@@ -1,10 +1,10 @@
 <?php
-require_once('./helpers.php');
+require_once('../utils/database.php');
 
-$user = $_POST['user'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 
-$userData = login($user, $password);
+$userData = login($email, $password);
 if ($userData) {
     session_start();
     $_SESSION['user'] = $userData;

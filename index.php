@@ -1,6 +1,6 @@
 <?php
     require_once './utils/games.php';
-    require_once './utils/categories.php';
+    require_once './utils/database.php';
     require_once './config/smarty.php';
     
     if ($_GET['catId']) {
