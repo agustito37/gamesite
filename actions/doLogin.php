@@ -1,8 +1,8 @@
 <?php
 require_once('../utils/database.php');
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = filter_input(INPUT_POST, 'email');
+$password = filter_input(INPUT_POST, 'password');
 
 $userData = login($email, $password);
 if ($userData) {

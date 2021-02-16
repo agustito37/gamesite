@@ -4,9 +4,37 @@
   <div class="form-label-group mb-3">
     <input type="text" name="name" class="form-control" placeholder="Nombre" required autofocus>
   </div>
-
+    
   <div class="form-label-group mb-3">
-    <input type="file" name="image" accept=".jpg, .png" class="form-control">
+    <input type="text" name="company" class="form-control" placeholder="Compañía" required autofocus>
+  </div>
+    
+  <div class="form-label-group mb-3">
+   <label for="date" class="text-dark">Fecha de lanzamiento</label>
+   <input type='text' name="date" class="form-control datepicker" required>
+  </div>
+    
+  <div class="form-label-group mb-3">
+    <label for="genre" class="text-dark">Género</label>
+    <select name="genre" class="form-control">
+        {foreach from=$categories item=category}
+            <option value="{$category.id}">{$category.nombre}</option>
+        {/foreach}
+    </select>
+  </div>
+    
+  <div class="form-label-group mb-3">
+    <label for="consoles" class="text-dark">Consolas</label>
+    <select id="consoles" name="consoles[]" class="form-control" multiple>
+        {foreach from=$consoles item=console}
+            <option value="{$console.id}">{$console.nombre}</option>
+        {/foreach}
+    </select>
+  </div>
+    
+  <div class="form-label-group mb-3">
+    <label for="image" class="text-dark">Poster</label>
+    <input type="file" name="image" id="image" accept=".jpg, .png" class="text-dark form-control-file">
   </div>
 
   {if $error}
@@ -15,4 +43,9 @@
 
   <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
 </form>
+  
+<script>
+    $('.datepicker').datepicker({ autoclose: true });
+    $('.datepicker').datepicker('update', new Date());
+</script>
               

@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once 'ConexionBD.php';
 require_once dirname(__FILE__).'/../libs/password.php';
 
@@ -24,12 +20,49 @@ function getCategory($id) {
     return $cn->siguienteRegistro();
 }
 
-function createGame($name, $image) {
+function createGame($name, $genre, $consoles, $date, $company, $image) {
+    $formattedDate = date('Y-m-d', strtotime($date));
     $cn = abrirConexion();
+    $cn->consulta(
+        'insert into juegos (nombre, id_genero, fecha_lanzamiento, empresa) values (:name, :genre, :date, :company)',
+        array(
+            array('name', $name, 'string'),
+            array('genre', $genre, 'int'),
+            array('date', $formattedDate, 'string'),
+            array('company', $company, 'string')
+        )
+    );
+    $ultimoId = $cn->ultimoIdInsert();
     
-    // insert query with parameters
+    $file;
+    if ($image) {
+        $file = $ultimoId.'.'.pathinfo($image['name'], PATHINFO_EXTENSION);
+        $cn->consulta(
+        'update juegos set poster= :file where id= :id',
+        array(
+            array('file', $file, 'string'),
+            array('id', $ultimoId, 'int')
+        )
+    );
+    }
+
+    foreach ($consoles as &$console) {
+        $cn->consulta(
+            'insert into juegos_consolas (id_juego, id_consola) values (:idJuego, :idConsola)',
+            array(
+                array('idJuego', $ultimoId, 'int'),
+                array('idConsola', $console, 'int')
+            )
+        );
+    }
     
-    return $cn->ultimoIdInsert;
+    return $file;
+}
+
+function getConsoles() {
+    $cn = abrirConexion();
+    $cn->consulta('select * from consolas');
+    return $cn->restantesRegistros();
 }
 
 function login($email, $password) {

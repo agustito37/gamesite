@@ -2,7 +2,7 @@
     require_once './config/smarty.php';
     
     $error = NULL;
-    if ($_GET['error']) {
+    if (filter_input(INPUT_GET, 'error')) {
         $error = 'Usuario / Password inválidos';
     }
     
