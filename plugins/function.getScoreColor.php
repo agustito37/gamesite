@@ -8,7 +8,7 @@
  * Purpose:  get color of that particular score
  * -------------------------------------------------------------
  */
-function smarty_function_getScoreColor($params, Smarty_Internal_Template $template)
+function smarty_function_getScoreColor($params)
 {
     $score = $params['score'];
             

@@ -2,11 +2,11 @@
 
 <form class="form-signin" action="actions/doCreateGame.php" method="post" enctype="multipart/form-data">
   <div class="form-label-group mb-3">
-    <input type="text" name="name" class="form-control" placeholder="Nombre" required autofocus>
+    <input type="text" name="name" class="form-control" placeholder="Nombre" autofocus required>
   </div>
     
   <div class="form-label-group mb-3">
-    <input type="text" name="company" class="form-control" placeholder="Compañía" required autofocus>
+    <input type="text" name="company" class="form-control" placeholder="Compañía" required>
   </div>
     
   <div class="form-label-group mb-3">
@@ -17,15 +17,15 @@
   <div class="form-label-group mb-3">
     <label for="genre" class="text-dark">Género</label>
     <select name="genre" class="form-control">
-        {foreach from=$categories item=category}
-            <option value="{$category.id}">{$category.nombre}</option>
+        {foreach from=$genres item=genre}
+            <option value="{$genre.id}">{$genre.nombre}</option>
         {/foreach}
     </select>
   </div>
     
   <div class="form-label-group mb-3">
     <label for="consoles" class="text-dark">Consolas</label>
-    <select id="consoles" name="consoles[]" class="form-control" multiple>
+    <select id="consoles" name="consoles[]" class="form-control" multiple required>
         {foreach from=$consoles item=console}
             <option value="{$console.id}">{$console.nombre}</option>
         {/foreach}

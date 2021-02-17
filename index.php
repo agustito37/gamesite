@@ -1,18 +1,22 @@
 <?php
-require_once './utils/games.php';
-require_once './utils/database.php';
+error_reporting(E_ERROR);
+ini_set('display_errors', 1);
+require_once './database/games.php';
+require_once './database/genres.php';
 require_once './config/smarty.php';
 
-$catiId = filter_input(INPUT_GET, 'catId');
-if ($catiId) {
-    $category = getCategory($catiId);
+$genreId = filter_input(INPUT_GET, 'genreId');
+if ($genreId) {
+    $genre = getGenre($genreId);
+    $games = getGamesOfCategory($genreId);
+} else {
+    $games = getGames();
 }
-$categories = getCategories();
-$games = getGames();
+$genres = getGenres();
 
 $smarty = getSmarty();
-$smarty->assign('category', $category);
-$smarty->assign('categories', $categories);
+$smarty->assign('genre', $genre);
+$smarty->assign('genres', $genres);
 $smarty->assign('games', $games);
 $smarty->assign('title', 'Home');
 $smarty->assign('body', 'home.tpl');

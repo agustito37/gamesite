@@ -1,5 +1,5 @@
 <?php
-require_once('../utils/database.php');
+require_once('../database/users.php');
 
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');

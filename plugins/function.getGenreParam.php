@@ -10,8 +10,8 @@
  */
 require_once('utils.php');
 
-function smarty_function_getCategoryParam($params, Smarty_Internal_Template $template)
+function smarty_function_getGenreParam($params)
 {
-    return addQueryParam('', 'catId', $params['category']);
+    return addQueryParam('', 'genreId', $params['genre']);
 }
 
