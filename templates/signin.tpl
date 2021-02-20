@@ -14,5 +14,9 @@
   {/if}
 
   <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+  
+  <hr class="my-4">
+  
+  <p class="text-dark">¿No tienes cuenta? <a href="./registro.php">Registrate</a></p>
 </form>
               
