@@ -8,7 +8,6 @@
  * Purpose:  get url with catId query param
  * -------------------------------------------------------------
  */
-require_once('utils.php');
 
 function smarty_function_getGamePosterUrl($params)
 {

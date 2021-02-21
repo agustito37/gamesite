@@ -8,7 +8,7 @@
  * Purpose:  get url with catId query param
  * -------------------------------------------------------------
  */
-require_once('utils.php');
+require_once dirname(__FILE__).'/../utils/helpers.php';
 
 function smarty_function_getGenreParam($params)
 {

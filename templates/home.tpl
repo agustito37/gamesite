@@ -1,6 +1,8 @@
 <h2 class="text-light">
     {if $genre}
         {$genre.nombre}
+    {elseif $query}
+        Buscar por <i>{$query}</i>
     {else}
         Juegos
     {/if}

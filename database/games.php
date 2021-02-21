@@ -26,7 +26,7 @@ function getGame($id) {
     return $cn->siguienteRegistro();
 }
 
-function getGamesOfCategory($id) {
+function getGamesOfGenre($id) {
     $cn = abrirConexion();
     $sql = "
         select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
@@ -35,6 +35,18 @@ function getGamesOfCategory($id) {
         where juegos.id_genero = :id
     ";
     $cn->consulta($sql, array(array('id', $id, 'int')));
+    return $cn->restantesRegistros();
+}
+
+function getGamesFromQuery($query) {
+    $cn = abrirConexion();
+    $sql = "
+        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
+        from juegos
+        inner join generos on juegos.id_genero = generos.id
+        where juegos.nombre LIKE :query
+    ";
+    $cn->consulta($sql, array(array('query', '%'.$query.'%', 'string')));
     return $cn->restantesRegistros();
 }
 
