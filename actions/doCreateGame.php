@@ -13,7 +13,7 @@ $consoles = $_POST['consoles'];
 $date = filter_input(INPUT_POST, 'date');
 $company = filter_input(INPUT_POST, 'company');
 
-// validaciones
+// validations
 $v = new Valitron\Validator($_POST);
 $v->rule('required', ['name', 'genre', 'consoles', 'date', 'company']);
 $v->rule('array', 'consoles');

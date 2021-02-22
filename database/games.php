@@ -8,6 +8,7 @@ function getGames() {
         select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
         from juegos
         inner join generos on juegos.id_genero = generos.id
+        order by juegos.puntuacion desc
     ";
     $cn->consulta($sql);
     return $cn->restantesRegistros();
@@ -19,7 +20,7 @@ function getGame($id) {
         select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
         from juegos
         inner join generos on juegos.id_genero = generos.id
-        where id= :id
+        where juegos.id= :id
     ";
     $cn->consulta($sql, array(array('id', $id, 'int')));
     
@@ -54,8 +55,9 @@ function getGameConsoles($id) {
     $cn = abrirConexion();
     $sql = "
         select consolas.nombre
-        from consolas
-        inner join juegos on consolas.id_juego = :id
+        from juegos_consolas
+        inner join consolas on consolas.id = juegos_consolas.id_consola
+        where juegos_consolas.id_juego= :id
     ";
     $cn->consulta($sql, array(array('id', $id, 'int')));
     return $cn->restantesRegistros();

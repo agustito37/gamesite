@@ -12,7 +12,7 @@ $alias = filter_input(INPUT_POST, 'alias');
 $password = filter_input(INPUT_POST, 'password');
 $passwordConfirm = filter_input(INPUT_POST, 'passwordConfirm');
 
-// validaciones
+// validations
 $v = new Valitron\Validator($_POST);
 $v->rule('required', ['email', 'alias', 'password', 'passwordConfirm']);
 $v->rule('equals', 'password', 'passwordConfirm');

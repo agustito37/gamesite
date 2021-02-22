@@ -9,7 +9,7 @@ and open the template in the editor.
     <body class="bg-dark">
         {include file='./navigation.tpl'}
         <main class="container-fluid">
-            <div class="row  h-100">
+            <div class="row h-100">
                 <section class="col bg-primary hidden-md-down p-4 h-100">
                     {include file=$body}
                 </section>
