@@ -50,3 +50,22 @@ html,body {
     padding: 3px !important;
     font-size: 1rem;
 }
+
+.comment {
+    background-color: #343a401f;
+    font-size: 1rem;
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment-header {
+    font-size: 0.9rem;
+    color: #ffffffc2;
+}
+
+.comment strong {
+    font-size: 1.2rem;
+}
+

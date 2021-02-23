@@ -16,3 +16,8 @@ function addQueryParam($url, $name, $value) {
     
     return $transformed;
 }
+
+function getUserFromSession() {
+    session_start();
+    return $_SESSION['user'];
+}

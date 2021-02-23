@@ -51,18 +51,6 @@ function getGamesFromQuery($query) {
     return $cn->restantesRegistros();
 }
 
-function getGameConsoles($id) {
-    $cn = abrirConexion();
-    $sql = "
-        select consolas.nombre
-        from juegos_consolas
-        inner join consolas on consolas.id = juegos_consolas.id_consola
-        where juegos_consolas.id_juego= :id
-    ";
-    $cn->consulta($sql, array(array('id', $id, 'int')));
-    return $cn->restantesRegistros();
-}
-
 function createGame($name, $genre, $consoles, $date, $company, $imageName) {
     $formattedDate = date('Y-m-d', strtotime($date));
     $cn = abrirConexion();

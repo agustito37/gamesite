@@ -22,3 +22,20 @@
         </p>
     </div>
 </div>
+        
+<h4 class="text-light mt-5 mb-3">Comentarios ({$comments.cantidad})</h2>
+
+{foreach from=$comments.registros item=comment}
+    <div class="comment pl-3 pr-3 pt-2 pb-3 mt-2">
+        <p class="comment-header"><strong>{$comment.alias_usuario}</strong> - {$comment.fecha}</p>
+        <p>{$comment.texto}</p>
+    </div>
+{/foreach}
+
+{if $smarty.session}
+    <form class="mt-2 p-2 w-100" action="actions/doCreateComment.php" method="post">
+        <textarea class="form-control" name="comment" placeholder="¿Qué te pareció el {$game.nombre_juego}?" required></textarea>
+        <input type="hidden" name="game" value="{$game.id}" />
+        <button class="mt-1 btn btn-secondary float-right" type="submit">Comentar</button>
+    </form>
+{/if}

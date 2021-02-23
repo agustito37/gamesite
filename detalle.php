@@ -1,7 +1,7 @@
 <?php
-error_reporting(E_ERROR);
-ini_set('display_errors', 1);
 require_once './database/games.php';
+require_once './database/consoles.php';
+require_once './database/comments.php';
 require_once './database/genres.php';
 require_once './config/smarty.php';
 
@@ -11,12 +11,14 @@ if (!$gameId) {
 }
 
 $game = getGame($gameId);
-$consoles = getGameConsoles($gameId);
+$consoles = getConsolesFromGame($gameId);
+$comments = getCommentsFromGame($gameId);
 $genres = getGenres();
 
 $smarty = getSmarty();
 $smarty->assign('game', $game);
 $smarty->assign('consoles', $consoles);
+$smarty->assign('comments', $comments);
 $smarty->assign('title', $game['nombre_juego']);
 $smarty->assign('genres', $genres);
 $smarty->assign('body', 'detail.tpl');

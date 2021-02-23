@@ -1,5 +1,4 @@
 <?php
-
 require_once './config/smarty.php';
 
 $smarty = getSmarty();

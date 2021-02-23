@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ERROR);
-ini_set('display_errors', 1);
 require_once './database/games.php';
 require_once './database/genres.php';
 require_once './config/smarty.php';

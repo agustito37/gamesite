@@ -30,4 +30,3 @@ function register($email, $alias, $password) {
         )
     );
 }
-
