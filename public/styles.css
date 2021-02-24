@@ -1,13 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 1, 2021, 9:18:37 AM
-    Author     : agustin
-*/
-
 html,body {
   height: 100%;
   color: white;
@@ -69,3 +59,10 @@ html,body {
     font-size: 1.2rem;
 }
 
+.genre:hover {
+    cursor: pointer;
+}
+
+.queryTitle {
+    font-size: 1rem;
+}

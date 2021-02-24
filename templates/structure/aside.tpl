@@ -1,9 +1,9 @@
 <aside class="col-2 px-1 bg-dark text-center p-5">
     <h5 class="text-light">Género</h5>
-    <div class="mb-2"><a href="./index.php" class="d-inline-block badge badge-secondary">Todos</a></div>
+    <div class="mb-2"><a href="./index.php" class="badge badge-secondary">Todos</a></div>
     {foreach from=$genres item=genre}
         <div class="mb-2">
-            <a href="{getGenreParam genre=$genre.id}" class="d-inline-block badge badge-secondary">
+            <a href="{getGenreParam genre=$genre.id}" class="badge badge-secondary">
                 {$genre.nombre}
             </a>
         </div>

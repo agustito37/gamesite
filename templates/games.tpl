@@ -8,7 +8,7 @@
     {/if}
 </h2>
 
-{foreach from=$games item=game}
+{foreach from=$games.results item=game}
     <a href="./detalle.php?gameId={$game.id}" class="product-listed card flex-row flex-wrap mt-3">
         <div class="card-header border-0">
             <img src="{getGamePosterUrl poster=$game.poster}" alt="">
@@ -27,3 +27,8 @@
         </div>
     </a>
 {/foreach}
+
+<div class="mt-2 pl-2 pr-2">
+    {if $page > 1}<button id="prev" class="btn btn-secondary">Anterior</button>{/if}
+    {if $page < $games.pageQuantity}<button id="next" class="btn btn-secondary float-right">Siguiente</button>{/if}
+</div>

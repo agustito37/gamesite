@@ -14,6 +14,46 @@ function getGames() {
     return $cn->restantesRegistros();
 }
 
+function getPaginatedGames($genreId, $query, $page) {
+    $size = 4;
+    $offset = ($page - 1) * $size;
+    $pagingParameters = array(
+        array('size', $size, 'int'),
+        array('offset', $offset, 'int')
+    );
+    $conditionalParameters = array();
+    $conditions = '';
+    
+    $select = "select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero";
+    $table = "
+        from juegos
+        inner join generos on juegos.id_genero = generos.id 
+    ";
+    
+    if (!empty($genreId)) {
+        $conditions .= ' where juegos.id_genero = :genreId';
+        array_push($conditionalParameters, array('genreId', $genreId, 'int'));
+    }
+    if (!empty($query)) {
+        $conditions .= empty($conditions) ? ' where' : ' and';
+        $conditions .= ' juegos.nombre LIKE :query';
+        array_push($conditionalParameters, array('query', '%'.$query.'%', 'string'));
+    }
+   
+    $order .= ' order by juegos.puntuacion desc';
+    $limit .= ' limit :offset, :size';
+    
+    $cn = abrirConexion();
+    $cn->consulta($select.$table.$conditions.$order.$limit, array_merge($pagingParameters, $conditionalParameters));
+    $results = $cn->restantesRegistros();
+    
+    $count = "select count(*) as total";
+    $cn->consulta($count.$table.$conditions, $conditionalParameters);
+    $pageQuantity = ceil($cn->siguienteRegistro()['total'] / $size);
+    
+    return array(results => $results, pageQuantity => $pageQuantity);
+}
+
 function getGame($id) {
     $cn = abrirConexion();
     $sql = "
@@ -25,30 +65,6 @@ function getGame($id) {
     $cn->consulta($sql, array(array('id', $id, 'int')));
     
     return $cn->siguienteRegistro();
-}
-
-function getGamesOfGenre($id) {
-    $cn = abrirConexion();
-    $sql = "
-        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
-        from juegos
-        inner join generos on juegos.id_genero = generos.id
-        where juegos.id_genero = :id
-    ";
-    $cn->consulta($sql, array(array('id', $id, 'int')));
-    return $cn->restantesRegistros();
-}
-
-function getGamesFromQuery($query) {
-    $cn = abrirConexion();
-    $sql = "
-        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
-        from juegos
-        inner join generos on juegos.id_genero = generos.id
-        where juegos.nombre LIKE :query
-    ";
-    $cn->consulta($sql, array(array('query', '%'.$query.'%', 'string')));
-    return $cn->restantesRegistros();
 }
 
 function createGame($name, $genre, $consoles, $date, $company, $imageName) {
