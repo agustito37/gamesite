@@ -2,12 +2,13 @@
 
 require_once 'helpers.php';
 
-function createComment($comment, $gameId, $userId) {
+function createComment($comment, $rating, $gameId, $userId) {
     $cn = abrirConexion();
     $cn->consulta(
-        'insert into comentarios (texto, id_juego, id_usuario, fecha) values (:comment, :gameId, :userId, CURDATE())',
+        'insert into comentarios (texto, puntuacion, id_juego, id_usuario, fecha) values (:comment, :rating, :gameId, :userId, CURDATE())',
         array(
             array('comment', $comment, 'string'),
+            array('rating', $rating, 'int'),
             array('gameId', $gameId, 'int'),
             array('userId', $userId, 'int')
         )
@@ -27,4 +28,21 @@ function getCommentsFromGame($id) {
     ";
     $cn->consulta($sql, array(array('id', $id, 'int')));
     return array(registros => $cn->restantesRegistros(), cantidad => $cn->cantidadRegistros());
+}
+
+function hasCommented($gameId, $userId) {
+    $cn = abrirConexion();
+    $sql = "
+        select 1
+        from comentarios
+        where comentarios.id_juego= :gameId
+        and comentarios.id_usuario= :userId
+    ";
+    $cn->consulta($sql, array(
+        array('gameId', $gameId, 'int'),
+        array('userId', $userId, 'int')
+    ));
+    
+    $hasCommented = $cn->cantidadRegistros() > 0;
+    return $hasCommented;
 }

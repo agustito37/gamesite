@@ -8,10 +8,26 @@
  * Purpose:  get url with catId query param
  * -------------------------------------------------------------
  */
-require_once dirname(__FILE__).'/../utils/helpers.php';
+
+function smarty_addQueryParam($url, $name, $value) {
+    $transformed = $url;
+    
+    if ($value) {
+        $query = parse_url($url, PHP_URL_QUERY);
+
+        if ($query) {
+            $transformed .= '&';
+        } else {
+            $transformed .= '?';
+        }
+        $transformed .= $name . '=' . $value;
+    }
+    
+    return $transformed;
+}
 
 function smarty_function_getGenreParam($params)
 {
-    return addQueryParam('', 'genreId', $params['genre']);
+    return smarty_addQueryParam('', 'genreId', $params['genre']);
 }
 

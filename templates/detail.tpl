@@ -27,15 +27,39 @@
 
 {foreach from=$comments.registros item=comment}
     <div class="comment pl-3 pr-3 pt-2 pb-3 mt-2">
-        <p class="comment-header"><strong>{$comment.alias_usuario}</strong> - {$comment.fecha}</p>
+        <p class="comment-header">
+            <input type="number" 
+                    name="rating" 
+                    id="rating-custom-icons" 
+                    class="rating"
+                    data-icon-lib="fa" 
+                    data-active-icon="fa-star"
+                    data-inactive-icon="fa-star-o" 
+                    data-readonly="true"
+                    value="{$comment.puntuacion}" />
+            <strong>{$comment.alias_usuario}</strong> - {$comment.fecha}</p>
         <p>{$comment.texto}</p>
     </div>
 {/foreach}
 
 {if $smarty.session}
-    <form class="mt-2 p-2 w-100" action="actions/doCreateComment.php" method="post">
-        <textarea class="form-control" name="comment" placeholder="¿Qué te pareció el {$game.nombre_juego}?" required></textarea>
-        <input type="hidden" name="game" value="{$game.id}" />
-        <button class="mt-1 btn btn-secondary float-right" type="submit">Comentar</button>
-    </form>
+    {if !$hasCommented}
+        <form class="mt-2 p-2 w-100" action="actions/doCreateComment.php" method="post">
+            <textarea class="form-control" name="comment" placeholder="¿Qué te pareció el {$game.nombre_juego}?" required></textarea>
+            <div class="clearfix">
+                <input type="number" 
+                    name="rating" 
+                    id="rating-custom-icons" 
+                    class="rating"
+                    data-icon-lib="fa" 
+                    data-active-icon="fa-star"
+                    data-inactive-icon="fa-star-o" 
+                    value="1" />
+            </div>
+            <input type="hidden" name="game" value="{$game.id}" />
+            <button class="mt-1 btn btn-secondary float-right" type="submit">Comentar</button>
+        </form>
+    {else}
+        <p class="mt-2 ml-2">Ya has comentado</p>
+    {/if}
 {/if}
