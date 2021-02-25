@@ -10,11 +10,15 @@
   </div>
     
   <div class="form-label-group mb-3">
-    <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+    <input id="password" type="password" name="password" class="form-control" placeholder="Contraseña" required>
   </div>
     
   <div class="form-label-group mb-3">
     <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirmación contraseña" required>
+  </div>
+    
+  <div id="feedback" class="w-100 mb-3 border rounded">
+    <div id="feedback-percentage" class="h-100 pl-2"></div>
   </div>
 
   {if $error}

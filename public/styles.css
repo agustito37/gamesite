@@ -71,3 +71,9 @@ html,body {
     font-size: 1.3rem;
     float: right;
 }
+
+#feedback {
+    height: 1.7rem;
+    display: none;
+    overflow: hidden;
+}

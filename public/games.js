@@ -20,16 +20,18 @@
             console.log(err);
         });
     };
-
-    $(document).on('click', '#prev', () => {
-        page -= 1;
-        loadGames();
-    });
-
-    $(document).on('click', '#next', () => {
-        page += 1;
-        loadGames();
-    });
     
-    loadGames();
+    $(document).ready(() => {
+        $(document).on('click', '#prev', () => {
+            page -= 1;
+            loadGames();
+        });
+
+        $(document).on('click', '#next', () => {
+            page += 1;
+            loadGames();
+        });
+
+        loadGames();
+    });
 })();
