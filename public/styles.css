@@ -77,3 +77,7 @@ html,body {
     display: none;
     overflow: hidden;
 }
+
+#direction {
+    cursor: pointer;
+}

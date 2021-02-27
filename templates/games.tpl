@@ -1,4 +1,4 @@
-<h2 class="text-light">
+<h2 class="text-light clearfix">
     {if $genre}
         {$genre.nombre}
     {elseif $query}
@@ -6,6 +6,16 @@
     {else}
         Juegos
     {/if}
+    
+    <span id="direction" class="float-right ml-2">{if $isDescending}↓{else}↑{/if}</span>
+    
+    <div class="form-label-group float-right clearfix">
+        <select id="sort" name="sort" class="form-control">
+            <option value="puntuacion" {if $sort == 'puntuacion'}selected{/if}>Puntaje</option>
+            <option value="fecha_lanzamiento" {if $sort == 'fecha_lanzamiento'}selected{/if}>Fecha</option>
+            <option value="visualizaciones" {if $sort == 'visualizaciones'}selected{/if}>Visitas</option>
+        </select>
+    </div>
 </h2>
 
 {foreach from=$games.results item=game}

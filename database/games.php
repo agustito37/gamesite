@@ -14,7 +14,7 @@ function getGames() {
     return $cn->restantesRegistros();
 }
 
-function getPaginatedGames($genreId, $query, $page) {
+function getPaginatedGames($genreId, $query, $sort = 'puntuacion', $isDescending = true, $page = 1) {
     $size = 4;
     $offset = ($page - 1) * $size;
     $pagingParameters = array(
@@ -40,7 +40,7 @@ function getPaginatedGames($genreId, $query, $page) {
         array_push($conditionalParameters, array('query', '%'.$query.'%', 'string'));
     }
    
-    $order .= ' order by juegos.puntuacion desc';
+    $order .= ' order by juegos.'.$sort.($isDescending ? ' desc' : ' asc');
     $limit .= ' limit :offset, :size';
     
     $cn = abrirConexion();
