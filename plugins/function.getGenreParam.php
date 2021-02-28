@@ -28,6 +28,6 @@ function smarty_addQueryParam($url, $name, $value) {
 
 function smarty_function_getGenreParam($params)
 {
-    return smarty_addQueryParam('', 'genreId', $params['genre']);
+    return smarty_addQueryParam('index.php', 'genreId', $params['genre']);
 }
 
