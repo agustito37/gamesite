@@ -12,6 +12,8 @@ $genre = filter_input(INPUT_POST, 'genre');
 $consoles = $_POST['consoles'];
 $date = filter_input(INPUT_POST, 'date');
 $company = filter_input(INPUT_POST, 'company');
+$video = filter_input(INPUT_POST, 'video');
+$summary = filter_input(INPUT_POST, 'summary');
 
 // validations
 $v = new Valitron\Validator($_POST);
@@ -19,17 +21,19 @@ $v->rule('required', ['name', 'genre', 'consoles', 'date', 'company']);
 $v->rule('array', 'consoles');
 $v->rule('date', 'date');
 $v->rule('numeric', 'genre');
+$v->rule('url', 'video');
 $v->labels(array(
     'name' => 'Nombre',
     'email' => 'Email',
     'genre' => 'Categoría',
     'consoles' => 'Consolas',
     'date' => 'Fecha lanzamiento',
-    'company' => 'Compañía'
+    'company' => 'Compañía',
+    'video' => 'Url video'
 ));
 if($v->validate()) {
     // storage
-    $file = createGame($name, $genre, $consoles, $date, $company, $image['name']);
+    $file = createGame($name, $genre, $consoles, $date, $company, $summary, $video, $image['name']);
     if ($file && is_uploaded_file($image["tmp_name"])) {
         move_uploaded_file($image["tmp_name"], '../public/imgs/'.$file);
     }

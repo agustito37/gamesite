@@ -32,7 +32,7 @@
                 {/if}
             </div>
             <p class="ml-auto h-100">
-                <span class="score badge badge-{getScoreColor score=$game.puntuacion}">{$game.puntuacion}</span>
+                <span class="score badge badge-{getScoreColor score=$game.puntuacion}">{getFormattedScore score=$game.puntuacion}</span>
             </p>
         </div>
     </a>

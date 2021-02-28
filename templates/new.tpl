@@ -2,15 +2,15 @@
 
 <form class="form-signin" action="actions/doCreateGame.php" method="post" enctype="multipart/form-data">
   <div class="form-label-group mb-3">
-    <input type="text" name="name" class="form-control" placeholder="Nombre" autofocus required>
+    <input type="text" name="name" class="form-control" placeholder="Nombre *" autofocus required>
   </div>
     
   <div class="form-label-group mb-3">
-    <input type="text" name="company" class="form-control" placeholder="Compañía" required>
+    <input type="text" name="company" class="form-control" placeholder="Compañía *" required>
   </div>
     
   <div class="form-label-group mb-3">
-   <label for="date" class="text-dark">Fecha de lanzamiento</label>
+   <label for="date" class="text-dark">Fecha de lanzamiento *</label>
    <input type='text' name="date" class="form-control datepicker" required>
   </div>
     
@@ -24,12 +24,20 @@
   </div>
     
   <div class="form-label-group mb-3">
-    <label for="consoles" class="text-dark">Consolas</label>
+    <label for="consoles" class="text-dark">Consolas *</label>
     <select id="consoles" name="consoles[]" class="form-control" multiple required>
         {foreach from=$consoles item=console}
             <option value="{$console.id}">{$console.nombre}</option>
         {/foreach}
     </select>
+  </div>
+    
+  <div class="form-label-group mb-3">
+   <textarea class="form-control" name="summary" placeholder="Descripción"></textarea>
+  </div>
+    
+  <div class="form-label-group mb-3">
+   <input type='url' name="video" placeholder="Url video" class="form-control">
   </div>
     
   <div class="form-label-group mb-3">

@@ -11,6 +11,7 @@ if (!$gameId) {
     header('location:./index.php');
 }
 
+incrementGameVisits($gameId);
 
 $game = getGame($gameId);
 $consoles = getConsolesFromGame($gameId);

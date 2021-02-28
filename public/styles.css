@@ -29,6 +29,7 @@ html,body {
 .product-listed .score, .product-detail .score {
     font-size: 2rem;
     color: white;
+    width: 4.7rem;
 }
 
 .alert {
@@ -80,4 +81,8 @@ html,body {
 
 #direction {
     cursor: pointer;
+}
+
+.card-video {
+    width: 20rem;
 }

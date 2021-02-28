@@ -2,6 +2,40 @@
 
 require_once 'helpers.php';
 
+function adjustGameScore($gameId) {
+    $cn = abrirConexion();
+    $cn->consulta("
+            select avg(comentarios.puntuacion) as average 
+            from juegos 
+            inner join comentarios on comentarios.id_juego = juegos.id
+            where juegos.id= :id
+        ",
+        array(
+            array('id', $gameId, 'int')
+        )
+    );
+    
+    $average = $cn->siguienteRegistro()['average'];
+    
+    $cn->consulta(
+        'update juegos set puntuacion= :average where id= :id',
+        array(
+            array('id', $gameId, 'int'),
+            array('average', $average, 'string')
+        )
+    );
+}
+
+function incrementGameVisits($gameId) {
+    $cn = abrirConexion();
+    $cn->consulta(
+        'update juegos set visualizaciones = visualizaciones + 1 where id= :id',
+        array(
+            array('id', $gameId, 'int')
+        )
+    );
+}
+
 function getGames() {
     $cn = abrirConexion();
     $sql = "
@@ -57,7 +91,7 @@ function getPaginatedGames($genreId, $query, $sort = 'puntuacion', $isDescending
 function getGame($id) {
     $cn = abrirConexion();
     $sql = "
-        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, generos.nombre as nombre_genero
+        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, juegos.url_video, juegos.resumen, generos.nombre as nombre_genero
         from juegos
         inner join generos on juegos.id_genero = generos.id
         where juegos.id= :id
@@ -67,16 +101,18 @@ function getGame($id) {
     return $cn->siguienteRegistro();
 }
 
-function createGame($name, $genre, $consoles, $date, $company, $imageName) {
+function createGame($name, $genre, $consoles, $date, $company, $summary, $video, $imageName) {
     $formattedDate = date('Y-m-d', strtotime($date));
     $cn = abrirConexion();
     $cn->consulta(
-        'insert into juegos (nombre, id_genero, fecha_lanzamiento, empresa) values (:name, :genre, :date, :company)',
+        'insert into juegos (nombre, id_genero, fecha_lanzamiento, empresa, url_video, resumen) values (:name, :genre, :date, :company, :video, :summary)',
         array(
             array('name', $name, 'string'),
             array('genre', $genre, 'int'),
             array('date', $formattedDate, 'string'),
-            array('company', $company, 'string')
+            array('company', $company, 'string'),
+            array('video', $video, 'string'),
+            array('summary', $summary, 'string')
         )
     );
     $ultimoId = $cn->ultimoIdInsert();
