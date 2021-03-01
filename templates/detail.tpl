@@ -30,24 +30,9 @@
     </div>
 </div>
         
-<h4 class="text-light mt-5 mb-3">Comentarios ({$comments.cantidad})</h2>
+<h4 class="text-light mt-5 mb-3">Comentarios ({$commentsCount})</h2>
 
-{foreach from=$comments.registros item=comment}
-    <div class="comment pl-3 pr-3 pt-2 pb-3 mt-2">
-        <p class="comment-header">
-            <input type="number" 
-                    name="rating" 
-                    id="rating-custom-icons" 
-                    class="rating"
-                    data-icon-lib="fa" 
-                    data-active-icon="fa-star"
-                    data-inactive-icon="fa-star-o" 
-                    data-readonly="true"
-                    value="{$comment.puntuacion}" />
-            <strong>{$comment.alias_usuario}</strong> - {$comment.fecha}</p>
-        <p>{$comment.texto}</p>
-    </div>
-{/foreach}
+<div id="comments">{if $commentsCount}Cargando...{/if}</div>
 
 {if $smarty.session}
     {if !$hasCommented}
@@ -56,7 +41,6 @@
             <div class="clearfix">
                 <input type="number" 
                     name="rating" 
-                    id="rating-custom-icons" 
                     class="rating"
                     data-icon-lib="fa" 
                     data-active-icon="fa-star"

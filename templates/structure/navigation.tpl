@@ -7,7 +7,10 @@
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
     </form>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto align-items-center">
+        {if $smarty.session}
+            <li class="nav-item mr-2 text-muted">{$smarty.session.user.alias}</li>
+        {/if}
         {if $smarty.session.user.es_admin}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,7 +18,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="./nuevo.php">Nuevo juego</a>
-                <a class="dropdown-item" href="#">Revisar comentarios</a>
+                <a class="dropdown-item" href="./revision.php">Revisar comentarios</a>
               </div>
             </li>
         {/if}

@@ -6,15 +6,9 @@
         <main class="container-fluid">
             <div class="row h-100">
                 <section id="content" class="col bg-primary hidden-md-down p-4 h-100">
-                    {if $body}
-                        {include file=$body}
-                    {else}
-                        <h2 class="text-light">Cargando...</h2>
-                    {/if}
+                    {include file=$body}
                 </section>
-                {include file='./aside.tpl'}
             </div>
         </main>
     </body>
 </html>
-

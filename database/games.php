@@ -49,7 +49,7 @@ function getGames() {
 }
 
 function getPaginatedGames($genreId, $query, $sort = 'puntuacion', $isDescending = true, $page = 1) {
-    $size = 4;
+    $size = 8;
     $offset = ($page - 1) * $size;
     $pagingParameters = array(
         array('size', $size, 'int'),

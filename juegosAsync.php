@@ -38,4 +38,4 @@ $smarty->assign('page', $page);
 $smarty->assign('query', $query);
 $smarty->assign('sort', $sort);
 $smarty->assign('isDescending', $isDescending);
-$smarty->display('games.tpl');
+$smarty->display('gamesAsync.tpl');
