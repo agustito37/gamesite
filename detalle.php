@@ -14,9 +14,10 @@ if (!$gameId) {
 incrementGameVisits($gameId);
 
 $game = getGame($gameId);
-$consoles = getConsolesFromGame($gameId);
+$gameConsoles = getConsolesFromGame($gameId);
 $commentsCount = getCommentsFromGameCount($gameId);
 $genres = getGenres();
+$consoles = getConsoles();
 
 $hasCommented = false;
 $user = getUserFromSession();
@@ -26,11 +27,12 @@ if(isset($user)) {
 
 $smarty = getSmarty();
 $smarty->assign('game', $game);
-$smarty->assign('consoles', $consoles);
+$smarty->assign('gameConsoles', $gameConsoles);
 $smarty->assign('commentsCount', $commentsCount);
 $smarty->assign('hasCommented', $hasCommented);
 $smarty->assign('title', $game['nombre_juego']);
 $smarty->assign('genres', $genres);
+$smarty->assign('consoles', $consoles);
 $smarty->assign('body', 'detail.tpl');
 $smarty->assign('scripts', array('bootstrap4-rating-input.min', 'comments.js'));
 $smarty->display('structure/application.tpl');

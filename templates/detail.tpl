@@ -19,7 +19,7 @@
                 <p class="card-text"><a class="text-dark" target="_blank" href="{$game.url_video}">Ver video</a></p>
             {/if}
             <p class="card-text mt-auto">
-                {foreach from=$consoles item=console}
+                {foreach from=$gameConsoles item=console}
                     <span class="d-inline-block badge badge-secondary">{$console.nombre}</span>
                 {/foreach}
             </p>

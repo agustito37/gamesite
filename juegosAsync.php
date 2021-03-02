@@ -5,6 +5,7 @@ require_once './config/smarty.php';
 require_once './libs/Valitron.php';
 
 $genreId = filter_input(INPUT_GET, 'genreId');
+$consoleId = filter_input(INPUT_GET, 'consoleId');
 $query = filter_input(INPUT_GET, 'query');
 $page = filter_input(INPUT_GET, 'page');
 $sort = filter_input(INPUT_GET, 'sort');
@@ -21,12 +22,11 @@ if ($isDescending) {
 // validate
 $v = new Valitron\Validator($_GET);
 $v->rule('required', 'page');
-$v->rule('optional', 'genreId', 'query', 'sort');
+$v->rule('optional', 'genreId', 'query', 'genre', 'console', 'sort');
 $v->rule('in', 'sort', Array('puntuacion', 'fecha_lanzamiento', 'visualizaciones'));
-$v->rule('numeric', 'page');
-$v->rule('numeric', 'genreId');
+$v->rule('numeric', 'page', 'genreId', 'consoleId');
 if($v->validate()) {
-    $games = getPaginatedGames($genreId, $query, $sort, $isDescending, $page);
+    $games = getPaginatedGames($genreId, $consoleId, $query, $sort, $isDescending, $page);
 } else {
     $games = Array();
 }

@@ -48,7 +48,7 @@ function getGames() {
     return $cn->restantesRegistros();
 }
 
-function getPaginatedGames($genreId, $query, $sort = 'puntuacion', $isDescending = true, $page = 1) {
+function getPaginatedGames($genreId, $consoleId, $query, $sort = 'puntuacion', $isDescending = true, $page = 1) {
     $size = 8;
     $offset = ($page - 1) * $size;
     $pagingParameters = array(
@@ -67,6 +67,17 @@ function getPaginatedGames($genreId, $query, $sort = 'puntuacion', $isDescending
     if (!empty($genreId)) {
         $conditions .= ' where juegos.id_genero = :genreId';
         array_push($conditionalParameters, array('genreId', $genreId, 'int'));
+    }
+    if (!empty($consoleId)) {
+        $conditions .= empty($conditions) ? ' where' : ' and';
+        $conditions .= " 
+            exists(
+                select 1 from juegos_consolas 
+                where juegos_consolas.id_juego = juegos.id 
+                and juegos_consolas.id_consola = :consoleId
+            )
+        ";
+        array_push($conditionalParameters, array('consoleId', $consoleId, 'int'));
     }
     if (!empty($query)) {
         $conditions .= empty($conditions) ? ' where' : ' and';

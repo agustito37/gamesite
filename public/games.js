@@ -2,6 +2,7 @@
     const urlParams = new URLSearchParams(window.location.search); 
     const genreId = urlParams.get('genreId');
     const query = urlParams.get('query');
+    const consoleId = urlParams.get('consoleId');
     let isDescending = urlParams.get('isDescending') || true;
     let sort = urlParams.get('sort') || 'puntuacion';
     let page = 1;
@@ -12,6 +13,7 @@
             data: {
                 genreId,
                 query,
+                consoleId,
                 sort,
                 isDescending,
                 page
