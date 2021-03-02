@@ -86,3 +86,8 @@ html,body {
 .card-video {
     width: 20rem;
 }
+
+.aside-poster {
+    height: auto;
+    width: 112px;
+}

@@ -9,6 +9,12 @@
         </div>
     {/foreach}
 
-    <h5 class="text-light mt-5">Top Game</h5>
+    {if $topGame}
+        <h5 class="text-light mt-5">Top Game</h5>
+        <a class="text-light" href="./detalle.php?gameId={$topGame.id}">
+           <img class="img-fluid aside-poster mx-2" src="{getGamePosterUrl poster=$topGame.poster}" alt="{$topGame.nombre_juego} poster"> 
+           <span class="d-block mt-1">{$topGame.nombre_juego}</span>
+        </a>
+    {/if}
 </aside>
     

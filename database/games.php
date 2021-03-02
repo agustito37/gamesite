@@ -112,6 +112,20 @@ function getGame($id) {
     return $cn->siguienteRegistro();
 }
 
+function getTopGame() {
+    $cn = abrirConexion();
+    $sql = "
+        select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, juegos.url_video, juegos.resumen, generos.nombre as nombre_genero
+        from juegos
+        inner join generos on juegos.id_genero = generos.id
+        order by juegos.puntuacion desc
+        limit 1, 1
+    ";
+    $cn->consulta($sql);
+    
+    return $cn->siguienteRegistro();
+}
+
 function createGame($name, $genre, $consoles, $date, $company, $summary, $video, $imageName) {
     $formattedDate = date('Y-m-d', strtotime($date));
     $cn = abrirConexion();
