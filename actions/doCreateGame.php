@@ -6,7 +6,7 @@ require_once dirname(__FILE__).'/../database/games.php';
 require_once dirname(__FILE__).'/../libs/Valitron.php';
 
 // input
-$image = $_FILES["image"];
+$image = $_FILES['image'];
 $name = filter_input(INPUT_POST, 'name');
 $genre = filter_input(INPUT_POST, 'genre');
 $consoles = $_POST['consoles'];
@@ -17,7 +17,7 @@ $summary = filter_input(INPUT_POST, 'summary');
 
 // validations
 $v = new Valitron\Validator($_POST);
-$v->rule('required', ['name', 'genre', 'consoles', 'date', 'company']);
+$v->rule('required', ['name', 'genre', 'consoles', 'date', 'company', 'summary']);
 $v->rule('array', 'consoles');
 $v->rule('date', 'date');
 $v->rule('numeric', 'genre');
@@ -29,7 +29,8 @@ $v->labels(array(
     'consoles' => 'Consolas',
     'date' => 'Fecha lanzamiento',
     'company' => 'Compañía',
-    'video' => 'Url video'
+    'video' => 'Url video',
+    'summary' => 'Descripción'
 ));
 if($v->validate()) {
     // storage

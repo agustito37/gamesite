@@ -15,6 +15,7 @@ $passwordConfirm = filter_input(INPUT_POST, 'passwordConfirm');
 // validations
 $v = new Valitron\Validator($_POST);
 $v->rule('required', ['email', 'alias', 'password', 'passwordConfirm']);
+$v->rule('lengthMin', 'password', 8);
 $v->rule('equals', 'password', 'passwordConfirm');
 $v->labels(array(
     'email' => 'Email',
@@ -24,8 +25,12 @@ $v->labels(array(
 ));
 if($v->validate()) {
     // storage
-    register($email, $alias, $password);
-    loginAction($email, $password);
+    $result = register($email, $alias, $password);
+    if ($result) {
+        loginAction($email, $password);
+    } else {
+        header('location:../registro.php?error=El usuario ya existe');
+    }
 } else {
     $firstError = array_values($v->errors())[0][0];
     header('location:../registro.php?error='.$firstError);

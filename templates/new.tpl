@@ -15,8 +15,8 @@
   </div>
     
   <div class="form-label-group mb-3">
-    <label for="genre" class="text-dark">Género</label>
-    <select name="genre" class="form-control">
+    <label for="genre" class="text-dark">Género *</label>
+    <select name="genre" class="form-control" required>
         {foreach from=$genres item=genre}
             <option value="{$genre.id}">{$genre.nombre}</option>
         {/foreach}
@@ -33,7 +33,7 @@
   </div>
     
   <div class="form-label-group mb-3">
-   <textarea class="form-control" name="summary" placeholder="Descripción"></textarea>
+   <textarea class="form-control" name="summary" placeholder="Descripción *" required></textarea>
   </div>
     
   <div class="form-label-group mb-3">
@@ -41,8 +41,8 @@
   </div>
     
   <div class="form-label-group mb-3">
-    <label for="image" class="text-dark">Poster</label>
-    <input type="file" name="image" id="image" accept=".jpg, .png" class="text-dark form-control-file">
+    <label for="image" class="text-dark">Poster *</label>
+    <input type="file" name="image" id="image" accept=".jpg, .png" class="text-dark form-control-file" required>
   </div>
 
   {if $error}

@@ -85,7 +85,7 @@ function getPaginatedGames($genreId, $consoleId, $query, $sort = 'puntuacion', $
         array_push($conditionalParameters, array('query', '%'.$query.'%', 'string'));
     }
    
-    $order .= ' order by juegos.'.$sort.($isDescending ? ' desc' : ' asc');
+    $order .= ' order by juegos.'.$sort.($isDescending ? ' desc' : ' asc').', juegos.id'.($isDescending ? ' asc' : ' desc');
     $limit .= ' limit :offset, :size';
     
     $cn = abrirConexion();

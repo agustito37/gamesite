@@ -21,7 +21,7 @@ function register($email, $alias, $password) {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     
     $cn = abrirConexion();
-    $cn->consulta(
+    return $cn->consulta(
         'insert into usuarios (email, alias, password) values (:email, :alias, :password)',
         array(
             array('email', $email, 'string'),

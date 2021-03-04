@@ -10,7 +10,7 @@
   </div>
     
   <div class="form-label-group mb-3">
-    <input id="password" type="password" name="password" class="form-control" placeholder="Contraseña" required>
+    <input id="password" type="password" name="password" class="form-control" placeholder="Contraseña" minlength="8" required>
   </div>
     
   <div class="form-label-group mb-3">
