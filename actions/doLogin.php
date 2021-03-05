@@ -1,5 +1,4 @@
 <?php
-
 require_once('helpers.php');
 
 $email = filter_input(INPUT_POST, 'email');

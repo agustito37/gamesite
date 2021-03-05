@@ -1,6 +1,5 @@
 <?php
-
-require_once('../database/users.php');
+require_once dirname(__FILE__).'/../database/users.php';
 
 function loginAction($email, $password) {
     $userData = login($email, $password);

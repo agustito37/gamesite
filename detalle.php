@@ -1,9 +1,9 @@
 <?php
+require_once 'smarty.php';
 require_once './database/games.php';
 require_once './database/consoles.php';
 require_once './database/comments.php';
 require_once './database/genres.php';
-require_once './config/smarty.php';
 require_once './utils/helpers.php';
 
 $gameId = filter_input(INPUT_GET, 'gameId');

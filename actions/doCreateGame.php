@@ -1,9 +1,10 @@
 <?php
-error_reporting(E_ERROR);
-ini_set('display_errors', 1);
 require_once dirname(__FILE__).'/../utils/checkAdmin.php';
 require_once dirname(__FILE__).'/../database/games.php';
 require_once dirname(__FILE__).'/../libs/Valitron.php';
+require_once dirname(__FILE__).'/../config/configuration.php';
+
+global $PUBLIC_PATH;
 
 // input
 $image = $_FILES['image'];
@@ -36,7 +37,7 @@ if($v->validate()) {
     // storage
     $file = createGame($name, $genre, $consoles, $date, $company, $summary, $video, $image['name']);
     if ($file && is_uploaded_file($image["tmp_name"])) {
-        move_uploaded_file($image["tmp_name"], '../public/imgs/'.$file);
+        move_uploaded_file($image["tmp_name"], '../'.$PUBLIC_PATH.'imgs/'.$file);
     }
 
     header('location:../index.php');

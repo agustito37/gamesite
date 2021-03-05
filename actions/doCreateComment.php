@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ERROR);
-ini_set('display_errors', 1);
 require_once dirname(__FILE__).'/../utils/checkAuthenticated.php';
 require_once dirname(__FILE__).'/../database/comments.php';
 require_once dirname(__FILE__).'/../database/games.php';

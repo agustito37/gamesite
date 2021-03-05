@@ -1,6 +1,5 @@
 <?php
-
-require_once dirname(__FILE__).'/../database/helpers.php';
+require_once dirname(__FILE__).'/../database/conexion.php';
 require_once dirname(__FILE__).'/../libs/password.php';
 
 function login($email, $password) {

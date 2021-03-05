@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
     <a class="navbar-brand" href="index.php">
-        <img src="public/imgs/logo.png">
+        <img src="{$public_path}imgs/logo.png">
     </a>
     <form action="./index.php" method="get" class="form-inline w-50">
         <input class="form-control w-50 mr-2 my-1" name="query" type="search" placeholder="Buscar..." value="{$smarty.get.query}">

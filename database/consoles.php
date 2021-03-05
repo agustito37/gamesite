@@ -1,6 +1,6 @@
 <?php
 
-require_once 'helpers.php';
+require_once dirname(__FILE__).'/../database/conexion.php';
 
 function getConsoles() {
     $cn = abrirConexion();

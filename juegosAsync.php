@@ -1,7 +1,7 @@
 <?php
+require_once 'smarty.php';
 require_once './database/games.php';
 require_once './database/genres.php';
-require_once './config/smarty.php';
 require_once './libs/Valitron.php';
 
 $genreId = filter_input(INPUT_GET, 'genreId');

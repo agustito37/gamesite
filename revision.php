@@ -1,7 +1,7 @@
 <?php
 require_once './utils/checkAdmin.php';
+require_once 'smarty.php';
 require_once './database/comments.php';
-require_once './config/smarty.php';
 require_once './database/genres.php';
 require_once './database/consoles.php';
 

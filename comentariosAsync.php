@@ -1,6 +1,6 @@
 <?php
+require_once 'smarty.php';
 require_once './database/comments.php';
-require_once './config/smarty.php';
 
 $gameId = filter_input(INPUT_GET, 'gameId');
 $page = filter_input(INPUT_GET, 'page');
