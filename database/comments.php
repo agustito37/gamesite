@@ -80,9 +80,9 @@ function getCommentsFromGameCount($id) {
         from comentarios
     ";
     
-    if (!empty($gameId)) {
+    if (!empty($id)) {
         $conditions .= ' where id_juego= :gameId';
-        array_push($conditionalParameters, array('gameId', $gameId, 'int'));
+        array_push($conditionalParameters, array('gameId', $id, 'int'));
     }
     
     $cn = abrirConexion();
