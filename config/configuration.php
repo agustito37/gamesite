@@ -1,4 +1,6 @@
 <?php
+// FORMALLY, THIS SHOULDN'T BE COMMITED
+ 
 // smarty
 $SMARTY_TEMPLATES_DIR = 'templates';
 $SMARTY_COMPILES_DIR = 'templates_c';
