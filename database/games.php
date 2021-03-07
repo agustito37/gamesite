@@ -118,8 +118,8 @@ function getTopGame() {
         select juegos.id, juegos.nombre as nombre_juego, juegos.poster, juegos.puntuacion, juegos.fecha_lanzamiento, juegos.empresa, juegos.visualizaciones, juegos.url_video, juegos.resumen, generos.nombre as nombre_genero
         from juegos
         inner join generos on juegos.id_genero = generos.id
-        order by juegos.puntuacion desc
-        limit 1, 1
+        order by juegos.puntuacion desc, juegos.id asc
+        limit 0, 1
     ";
     $cn->consulta($sql);
     
